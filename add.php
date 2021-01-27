@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php 
 
 $connect = mysqli_connect("localhost", "root", "", "sistem_informasi_mahasiswa");
@@ -21,8 +22,6 @@ if(isset($_POST["submit"])){
         '$nama', '$tanggal_lahir', '$alamat', '$jenis_kelamin', $jurusan, '$npm'
     )";
 
-    // $insertQuery = "SELECT * FROM jurusan";
-
     $insertSql = mysqli_query($connect, $insertQuery);
 
     // cek apakah data masuk
@@ -36,6 +35,16 @@ if(isset($_POST["submit"])){
     }
 }
 
+?>
+
+<?php 
+    if(!isset($_SESSION["login"])){
+        echo "
+            <script>
+                alert('Login terlebih dahulu'); 
+                document.location.href = 'login.php';
+            </script>";
+    }
 ?>
 
 <?php require_once('header.php'); ?>

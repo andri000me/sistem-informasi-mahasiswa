@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php 
 
 $connect = mysqli_connect("localhost", "root", "", "sistem_informasi_mahasiswa");
@@ -40,9 +41,20 @@ if(isset($_POST)){
 
 <?php require_once('header.php'); ?>
 
+<?php 
+    if(!isset($_SESSION["login"])){
+        echo "
+            <script>
+                alert('Login terlebih dahulu'); 
+                document.location.href = 'login.php';
+            </script>";
+    }
+    exit;
+?>
+
 <div class="container pt-5">
     <div class="row justify-content-center">
-        <h1>Tambah Mahasiswa</h1>
+        <h1>Edit Mahasiswa</h1>
     </div>
     <div class="row pt-5">
         <div class="col-md-12">
