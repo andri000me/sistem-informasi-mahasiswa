@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 27, 2021 at 04:35 AM
+-- Generation Time: Jan 27, 2021 at 01:52 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.17
 
@@ -97,6 +97,30 @@ INSERT INTO `mahasiswa` (`id`, `nama`, `tanggal_lahir`, `alamat`, `jenis_kelamin
 (4, 'Galuh Siregar', '1996-07-09', 'Psr. Wahidin Sudirohusodo No. 421, Lubuklinggau 40476, KalBar ', 'Laki-laki', 4, 1450237444),
 (10, 'Supriyanti', '2021-01-11', 'Jalan Margonda Raya Depok', 'Perempuan', 9, 314253);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `nama`, `email`, `password`) VALUES
+(1, 'asda', 'sdafsa', 'dagda@saga.com', '111'),
+(5, 'a', 'a', 'aga@aas.com', '$2y$10$MWqIoJ0AXm2AS4k4yfJfZOFfk44co9Q56dJt7Vs.olIaOePs2Pxj2'),
+(10, 'ndo_kun', 'Nando Putra Pratama', 'ndo_kun@gmail.com', '$2y$10$OY4DIyyJ5aBFTmIep8hqO.zfwmJQAm/iA6zwKkyadv4d2AfjPdNpO'),
+(11, 'admin', 'Admin', 'admin@admin.com', '$2y$10$gzTSTAzsFQIM2C48VGExgeIw4EpdkQJfW9IDbm4VxzrwgWn6FKh7.');
+
 --
 -- Indexes for dumped tables
 --
@@ -123,6 +147,13 @@ ALTER TABLE `mahasiswa`
   ADD KEY `jurusan` (`jurusan_id`);
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -142,6 +173,12 @@ ALTER TABLE `jurusan`
 -- AUTO_INCREMENT for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
