@@ -24,6 +24,25 @@ if(isset($_POST["submit"])){
         OR `jurusan`.`nama_jurusan` LIKE '%$keyword%' 
     ORDER BY `mahasiswa`.`nama`";
     $sql = mysqli_query($connect, $query);
+
+     // pagination
+$batas = 10;
+$halaman = isset($_GET['halaman'])?(int)$_GET['halaman'] : 1;
+$halaman_awal = ($halaman>1) ? ($halaman * $batas) - $batas : 0;
+$previous = $halaman - 1;
+$next = $halaman + 1;
+
+$jumlah_data = mysqli_num_rows($sql);
+$total_halaman = ceil($jumlah_data / $batas);
+
+$sql = mysqli_query($connect, "SELECT `mahasiswa`.`id`, `mahasiswa`.`nama`, `mahasiswa`.`tanggal_lahir`, `mahasiswa`.`alamat`, `mahasiswa`.`jenis_kelamin`, `mahasiswa`.`npm`, `jurusan`.`nama_jurusan` FROM `mahasiswa` INNER JOIN jurusan ON `mahasiswa`.`jurusan_id` = `jurusan`.`id` WHERE `mahasiswa`.`nama` LIKE '%$keyword%'
+        OR `mahasiswa`.`npm` LIKE '%$keyword%' 
+        OR `mahasiswa`.`alamat` LIKE '%$keyword%' 
+        OR `jurusan`.`nama_jurusan` LIKE '%$keyword%'  LIMIT $halaman_awal, $batas");
+
+$no = $halaman_awal+1;
+
+    
 }else{
     $query = "SELECT `mahasiswa`.`id`, `mahasiswa`.`nama`, `mahasiswa`.`tanggal_lahir`, `mahasiswa`.`alamat`, `mahasiswa`.`jenis_kelamin`, `mahasiswa`.`npm`, `jurusan`.`nama_jurusan` FROM `mahasiswa` INNER JOIN jurusan ON `mahasiswa`.`jurusan_id` = `jurusan`.`id` ORDER BY `mahasiswa`.`nama`";
     $sql = mysqli_query($connect, $query);
@@ -38,7 +57,7 @@ $next = $halaman + 1;
 $jumlah_data = mysqli_num_rows($sql);
 $total_halaman = ceil($jumlah_data / $batas);
 
-$dataMhs = mysqli_query($connect, "SELECT `mahasiswa`.`id`, `mahasiswa`.`nama`, `mahasiswa`.`tanggal_lahir`, `mahasiswa`.`alamat`, `mahasiswa`.`jenis_kelamin`, `mahasiswa`.`npm`, `jurusan`.`nama_jurusan` FROM `mahasiswa` INNER JOIN jurusan ON `mahasiswa`.`jurusan_id` = `jurusan`.`id` ORDER BY `mahasiswa`.`nama` LIMIT $halaman_awal, $batas");
+$sql = mysqli_query($connect, "SELECT `mahasiswa`.`id`, `mahasiswa`.`nama`, `mahasiswa`.`tanggal_lahir`, `mahasiswa`.`alamat`, `mahasiswa`.`jenis_kelamin`, `mahasiswa`.`npm`, `jurusan`.`nama_jurusan` FROM `mahasiswa` INNER JOIN jurusan ON `mahasiswa`.`jurusan_id` = `jurusan`.`id` ORDER BY `mahasiswa`.`nama` LIMIT $halaman_awal, $batas");
 
 $no = $halaman_awal+1;
 }
@@ -80,7 +99,7 @@ $no = $halaman_awal+1;
             </tr>
         </thead>
         <tbody>
-            <?php while($row = mysqli_fetch_assoc($dataMhs)) : ?>
+            <?php while($row = mysqli_fetch_assoc($sql)) : ?>
             <tr>
                 
                 <th scope="row"><?= $no++ ?></th>
@@ -121,3 +140,10 @@ $no = $halaman_awal+1;
 </div>
 
 <?php require_once('footer.php'); ?>
+
+<!-- pass web -->
+<!-- !Pa#jz$DOBU($mElnuSM -->
+
+<!-- pass db -->
+<!-- 1J9%cvakoH!7{3tD -->
+<!-- a3!@uK*D!(*Q2dk- -->
