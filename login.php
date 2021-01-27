@@ -56,7 +56,8 @@ if(isset($_POST["submit"])){
                     <label for="password">Password:</label>
                     <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password">
                 </div>
-                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                <a href="register.php" style="color: orangered">Register</a><br>
+                <button type="submit" name="submit" class="btn btn-primary mt-3">Submit</button>
             </form>
         </div>
     </div>
