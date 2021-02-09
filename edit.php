@@ -3,9 +3,10 @@
 
 $connect = mysqli_connect("localhost", "root", "", "sistem_informasi_mahasiswa");
 
+
 $id = $_GET["id"];
 
-$query = "SELECT * FROM mahasiswa WHERE `id` = $id";
+$query = "SELECT * FROM mahasiswa WHERE `id` = '$id'";
 
 $queryJurusan = "SELECT * FROM jurusan";
 
@@ -13,6 +14,7 @@ $sql = mysqli_query($connect, $query);
 $sqlJurusan = mysqli_query($connect, $queryJurusan);
 
 $row = mysqli_fetch_assoc($sql);
+// var_dump($row);
 
 // UPDATE
 if(isset($_POST)){
@@ -23,9 +25,11 @@ if(isset($_POST)){
     $jenis_kelamin = isset($_POST["jenis_kelamin"]) ? htmlspecialchars($_POST["jenis_kelamin"]) : '';
     $jurusan = isset($_POST["jurusan_id"]) ? htmlspecialchars($_POST["jurusan_id"]) : '';
 
-    $updateQuery = "UPDATE `mahasiswa` SET `nama` = '$nama', `tanggal_lahir` = '$tanggal_lahir', `alamat` = '$alamat', `jenis_kelamin` = '$jenis_kelamin', `jurusan_id` = $jurusan, `npm` = '$npm' WHERE `id` = $id";
+    $updateQuery = "UPDATE `mahasiswa` SET `nama` = '$nama', `tanggal_lahir` = '$tanggal_lahir', `alamat` = '$alamat', `jenis_kelamin` = '$jenis_kelamin', `jurusan_id` = $jurusan, `npm` = $npm WHERE `id` = $id";
 
     $updateSql = mysqli_query($connect, $updateQuery);
+
+    var_dump($updateQuery);
 
     if(mysqli_affected_rows($connect) > 0){
         echo "
@@ -36,6 +40,8 @@ if(isset($_POST)){
     ";
     }
 }
+
+// var_dump($_POST);
 
 ?>
 
@@ -49,7 +55,6 @@ if(isset($_POST)){
                 document.location.href = 'login.php';
             </script>";
     }
-    exit;
 ?>
 
 <div class="container pt-5">
@@ -101,7 +106,7 @@ if(isset($_POST)){
                     </select>
                 </div>
                 
-                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" name="submit" class="btn btn-primary">Update</button>
             </form>
         </div>
     </div>

@@ -33,7 +33,7 @@ if(isset($_POST["submit"])){
             document.location.href = 'daftar-mahasiswa.php';
         </script>";
     }else{
-        echo "<script>alert('Username atau password salah'); document.location.href = 'loginphp';</script>";
+        echo "<script>alert('Username atau password salah'); document.location.href = 'login.php';</script>";
     }
 }
 

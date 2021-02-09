@@ -19,7 +19,7 @@ if(isset($_POST["submit"])){
     $jurusan = htmlspecialchars($_POST["jurusan_id"]);
 
     $insertQuery = "INSERT INTO `mahasiswa` (`nama`, `tanggal_lahir`, `alamat`, `jenis_kelamin`, `jurusan_id`, `npm` ) VALUES (
-        '$nama', '$tanggal_lahir', '$alamat', '$jenis_kelamin', $jurusan, '$npm'
+        '$nama', '$tanggal_lahir', '$alamat', '$jenis_kelamin', $jurusan, $npm
     )";
 
     $insertSql = mysqli_query($connect, $insertQuery);
